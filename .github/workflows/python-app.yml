@@ -56,7 +56,6 @@ jobs:
       run: |
         # Generate HTML documentation
         pdoc *.py  --html --force
-      run: git add .
     - name: Commit changes
       uses: EndBug/add-and-commit@v7
       with:

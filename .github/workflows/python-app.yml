@@ -62,4 +62,4 @@ jobs:
         author_name: DocumentationBot
         # author_email: 
         message: 'Auto update documentation'
-        add: 'html/* -f'
+        add: './html/* -f'

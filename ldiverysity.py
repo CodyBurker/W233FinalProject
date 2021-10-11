@@ -27,13 +27,11 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     equiv_class_sizes = dataset.groupby(q_identifiers[:-1]).size().to_frame().reset_index()
     # Reset columns names
     equiv_class_sizes.columns = [*equiv_class_sizes.columns[:-1], 'equiv_class_size']
-    print(equiv_class_sizes)
 
     # Get count of sensitive values in each equivilence class
     sensitive_count = dataset.groupby(q_identifiers_sensitive).size().to_frame().reset_index()
     # Reset columns names
     sensitive_count.columns = [*sensitive_count.columns[:-1], 'sensitive_count']
-    print(sensitive_count)
     # Add equiv class counts back in
     sensitive_count_with_size = pd.merge(sensitive_count, equiv_class_sizes,left_on=q_identifiers[:-1], right_on=q_identifiers[:-1])
     
@@ -47,7 +45,7 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     
     sum_entropy['total_entropy'] = np.exp(sum_entropy['neg_p_log_p'])
 
-    return sum_entropy.drop('neg_p_log_p',1)
+    return sum_entropy.drop('neg_p_log_p',axis=1)
 
 if __name__=="__main__":
     dataset = read_example_dataset()

@@ -57,9 +57,9 @@ jobs:
         # Generate HTML documentation
         pdoc *.py  --html --force
     - name: Commit changes
-      uses: EndBug/add-and-commit@v7
-      with:
-        author_name: DocumentationBot
-        # author_email: 
-        message: 'Auto update documentation'
-        add: './html/* -f'
+      run: |
+        git config --global user.name 'Documentation Bot'
+        git config --global user.email 'your-username@users.noreply.github.com'
+        git add html/*
+        git commit -m "Adding documentation"
+        git push

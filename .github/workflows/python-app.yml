@@ -56,10 +56,13 @@ jobs:
       run: |
         # Generate HTML documentation
         pdoc *.py  --html --force
-    - name: Commit changes
-      run: |
-        git config --global user.name 'Documentation Bot'
-        git config --global user.email 'your-username@users.noreply.github.com'
-        git add html/*
-        git commit -m "Adding documentation"
-        git push
+    - name: List files
+      run: | 
+        ls html/
+    # - name: Commit changes
+    #   run: |
+    #     git config --global user.name 'Documentation Bot'
+    #     git config --global user.email 'your-username@users.noreply.github.com'
+    #     git add html/*
+    #     git commit -m "Adding documentation"
+    #     git push

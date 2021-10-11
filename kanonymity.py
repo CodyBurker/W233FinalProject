@@ -27,8 +27,14 @@ def smallest_classes(dataset,q_identifiers):
     return equiv_class_sizes[equiv_class_sizes.k == min(equiv_class_sizes.k)]
     
 if __name__=="__main__":
-    dataset = read_example_dataset()
-    k = get_k(dataset, ['Age','Gender'])
-    print('K:%i' % k)
-    vulnerable_equiv_classes = smallest_classes(dataset, ['Age','Gender'])
-    print("Equiv Classes with k=%d\n%s" % (k,vulnerable_equiv_classes) )
+    
+    dataset = pd.read_csv("HW3.csv")
+    # HW 3 1(c) k=31
+    k = get_k(dataset, ['Sex'])
+    print('K [Sex]:\t%i' % k)
+    # HW 3 1(d) k=10
+    k = get_k(dataset, ['Sex','Age'])
+    print('K [Sex,Age]:\t%i' % k)
+    # HW 3 1(e) k=2
+    k = get_k(dataset, ['Sex','Age','Birth Country'])
+    print('K [Sex,Age,Birth Country]:\t%i' % k)

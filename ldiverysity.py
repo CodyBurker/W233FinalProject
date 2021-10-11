@@ -9,17 +9,21 @@ def read_example_dataset():
 # Given a dataframe, quasi-identifiers, and a sensitive columns
 # Return a dataframe with each equivilence classes as a row and the count of distinct sensitive
 # Values for that class
-def get_l_distinct(dataset, q_identifiers, sensitive_column):
+def get_l_distinct_table(dataset, q_identifiers, sensitive_column):
     ldistinct = dataset.groupby(q_identifiers).agg({sensitive_column:"nunique"}).reset_index()
     # Rename Column
     ldistinct = ldistinct.rename({ldistinct.columns[-1]: 'LDistinct'}, axis=1)
     return ldistinct
 
+def get_l_distinct(dataset, q_identifiers, sensitive_column):
+    l_distinct_table = get_l_distinct_table(dataset, q_identifiers, sensitive_column)
+    return min(l_distinct_table['LDistinct'])
+
 # TODO
 # Given a dataframe, quasi-identifiers, and a sensitive columns
 # Return a dataframe with each equivilence class as a row and entropy
-# Of each values for that class
-def get_l_entropy(dataset, q_identifiers, sensitive_column):
+# Of sensitive values for that class
+def get_l_entropy_table(dataset, q_identifiers, sensitive_column):
     q_identifiers_sensitive = q_identifiers
     q_identifiers_sensitive.append(sensitive_column)
     
@@ -47,8 +51,14 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
 
     return sum_entropy.drop('neg_p_log_p',axis=1)
 
+# Get entropy l-diversity for entire dataset
+def get_l_entropy(dataset, q_identifiers, sensitive_column):
+    entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
+    return min(entropy_table['total_entropy'])
+
 if __name__=="__main__":
-    dataset = read_example_dataset()
-    print(get_l_distinct(dataset, ['Age','Gender'],'Seniority level'))
+    dataset = pd.read_csv("HW3.csv")
     
-    print(get_l_entropy(dataset,['Age','Gender'],'Seniority level'))
+    # HW 3 4(a)
+    print(get_l_distinct(dataset, ['Sex'],'Drinks/Day')) # Expected: 6
+    print(get_l_entropy(dataset,['Sex'],'Drinks/Day'))# Expected: 4.22

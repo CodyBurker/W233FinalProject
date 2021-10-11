@@ -16,6 +16,7 @@ def get_k(dataset, q_identifiers):
     k = dataset.groupby(q_identifiers).size().min()
     return k
 
+# Given a dataframe and a list of QIDs, return the equivilence classes with the the smallest K value
 def smallest_classes(dataset,q_identifiers):
     equiv_class_sizes = dataset.groupby(q_identifiers).size().to_frame().reset_index()
     # Reset columns names

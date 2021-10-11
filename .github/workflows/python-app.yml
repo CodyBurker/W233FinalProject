@@ -10,10 +10,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
@@ -39,6 +37,13 @@ jobs:
       run: |
         # Generate HTML documentation
         pdoc *.py  --html --force
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: DocumentationBot
+        # author_email: 
+        message: 'Auto update documentation'
+          add: 'html/* -f'
   # document:
   #   runs-on: ubuntu-latest
   #   steps:

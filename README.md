@@ -1,7 +1,7 @@
 # W233 Final Project: Python Privacy Library
 Todo: 
-  * [ ] k-Anonymity
-  * [ ] L-Diversity 
+  * [x] k-Anonymity
+  * [x] L-Diversity 
   * [ ] t-Closeness
   * [ ] Incognito
   * [ ] Mondrian 

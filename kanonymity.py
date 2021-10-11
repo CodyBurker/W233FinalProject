@@ -5,16 +5,14 @@
 # Dataset: https://www.kaggle.com/parulpandey/2020-it-salary-survey-for-eu-region
 
 import pandas as pd
-import hashlib
-import numpy as np
 
 def read_example_dataset():
 # Read example dataset
     example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
     return example_dataframe
 
+# Given a dataframe and list of QIDs, return the k-Anonymity of the table
 def get_k(dataset, q_identifiers):
-    # Generate hash to identify equivilence class (q*-block)
     k = dataset.groupby(q_identifiers).size().min()
     return k
 

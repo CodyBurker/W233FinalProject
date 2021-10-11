@@ -5,6 +5,7 @@
 # Dataset: https://www.kaggle.com/parulpandey/2020-it-salary-survey-for-eu-region
 
 import pandas as pd
+import pytest
 
 def read_example_dataset():
 # Read example dataset

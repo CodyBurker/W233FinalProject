@@ -56,7 +56,7 @@ jobs:
       run: |
         # Generate HTML documentation
         pdoc *.py  --html --force
-   - name: switching from HTTPS to SSH
+    - name: switching from HTTPS to SSH
       run: git remote set-url origin ${{ secrets.ssh }}
     - name: check for changes
       run: git status

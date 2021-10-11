@@ -11,21 +11,23 @@ def read_example_dataset():
     example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
     return example_dataframe
 
+def get_k_table(dataset, q_identifiers):
+    k_table = dataset.groupby(q_identifiers).size().reset_index()
+    k_table = k_table.rename({k_table.columns[-1]: 'KCount'}, axis=1)
+    return k_table
+
 # Given a dataframe and list of QIDs, return the k-Anonymity of the table
 def get_k(dataset, q_identifiers):
-    k = dataset.groupby(q_identifiers).size().min()
+    k = min(get_k_table(dataset,q_identifiers)['KCount'])
     return k
 
 # Given a dataframe and a list of QIDs, return the equivilence classes with the the smallest K value
 def smallest_classes(dataset,q_identifiers):
-    equiv_class_sizes = dataset.groupby(q_identifiers).size().to_frame().reset_index()
-    # Reset columns names
-    col_names = q_identifiers
-    col_names.append('k')
-    equiv_class_sizes.columns = col_names
+    k_table = get_k_table(dataset, q_identifiers)
+    min_equiv_classes = k_table[k_table['KCount'] == min(k_table['KCount'])]
     # k = get_k(dataset, q_identifiers)
-    return equiv_class_sizes[equiv_class_sizes.k == min(equiv_class_sizes.k)]
-    
+    return min_equiv_classes
+
 if __name__=="__main__":
     
     dataset = pd.read_csv("HW3.csv")

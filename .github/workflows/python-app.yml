@@ -39,3 +39,27 @@ jobs:
       run: |
         # Generate HTML documentation
         pdoc *.py  --html --force
+  document:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pdoc3
+    - name: Generate Documentation
+      run: |
+        # Generate HTML documentation
+        pdoc *.py  --html --force
+    - name: stage changed files
+      run: git add .
+    - name: commit changed files
+      run: git commit -m "Auto adding documentation"
+    - name: fetch from master
+      run: git fetch origin master
+    - name: push code to master
+      run: git push origin HEAD:master

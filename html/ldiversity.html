@@ -90,7 +90,21 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     &#34;&#34;&#34;
     entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
     return min(entropy_table[&#39;total_entropy&#39;])
-
+    
+def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
+    &#34;&#34;&#34;
+    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
+    return a either c (if l was provided) or l (if c was provided).
+    &#34;&#34;&#34;
+    if c==None and not l==None:
+        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
+        return()
+    elif l==None and not c==None:
+        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
+        return()
+    else:
+        raise Exception(&#34;Please provide either c or l&#34;)
+        
 if __name__==&#34;__main__&#34;:
     dataset = pd.read_csv(&#34;HW3.csv&#34;)
     
@@ -197,6 +211,31 @@ Of sensitive values for that class</p></div>
     return sum_entropy.drop(&#39;neg_p_log_p&#39;,axis=1)</code></pre>
 </details>
 </dd>
+<dt id="ldiversity.get_recursive_cl_diversity"><code class="name flex">
+<span>def <span class="ident">get_recursive_cl_diversity</span></span>(<span>dataset, q_identifiers, sensitive_column, c=None, l=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
+return a either c (if l was provided) or l (if c was provided).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
+    &#34;&#34;&#34;
+    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
+    return a either c (if l was provided) or l (if c was provided).
+    &#34;&#34;&#34;
+    if c==None and not l==None:
+        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
+        return()
+    elif l==None and not c==None:
+        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
+        return()
+    else:
+        raise Exception(&#34;Please provide either c or l&#34;)</code></pre>
+</details>
+</dd>
 <dt id="ldiversity.read_example_dataset"><code class="name flex">
 <span>def <span class="ident">read_example_dataset</span></span>(<span>)</span>
 </code></dt>
@@ -231,6 +270,7 @@ Of sensitive values for that class</p></div>
 <li><code><a title="ldiversity.get_l_distinct_table" href="#ldiversity.get_l_distinct_table">get_l_distinct_table</a></code></li>
 <li><code><a title="ldiversity.get_l_entropy" href="#ldiversity.get_l_entropy">get_l_entropy</a></code></li>
 <li><code><a title="ldiversity.get_l_entropy_table" href="#ldiversity.get_l_entropy_table">get_l_entropy_table</a></code></li>
+<li><code><a title="ldiversity.get_recursive_cl_diversity" href="#ldiversity.get_recursive_cl_diversity">get_recursive_cl_diversity</a></code></li>
 <li><code><a title="ldiversity.read_example_dataset" href="#ldiversity.read_example_dataset">read_example_dataset</a></code></li>
 </ul>
 </li>

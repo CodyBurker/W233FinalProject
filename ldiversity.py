@@ -55,13 +55,28 @@ def get_l_entropy_table(dataset, q_identifiers, sensitive_column):
     sum_entropy['total_entropy'] = np.exp(sum_entropy['neg_p_log_p'])
     return sum_entropy.drop('neg_p_log_p',axis=1)
 
+# NEEDS IMPLEMENTED
 def get_l_entropy(dataset, q_identifiers, sensitive_column):
     """
     Get entropy l-diversity for entire dataset
     """
     entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
     return min(entropy_table['total_entropy'])
-
+    
+def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
+    """
+    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
+    return a either c (if l was provided) or l (if c was provided).
+    """
+    if c==None and not l==None:
+        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
+        return()
+    elif l==None and not c==None:
+        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
+        return()
+    else:
+        raise Exception("Please provide either c or l")
+        
 if __name__=="__main__":
     dataset = pd.read_csv("HW3.csv")
     

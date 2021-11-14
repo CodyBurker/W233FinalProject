@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 import pytest
 
+"""
+Module to test for t-closeness.
+"""
+
 def read_example_dataset():
     """
     Read example dataset
@@ -11,6 +15,9 @@ def read_example_dataset():
     
 #Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.
 def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
+    """
+    Given a pandas dataframe, a list of quasi-identifiers, a sensitive attribute, and a distance metric, get the t-closeness of a dataset.
+    """
     #1. Need proportion of each answer from full table
     #2. Split data up into each equivalence class
     #2a. For each equivalence class, calculate the proportion of each answer
@@ -27,6 +34,9 @@ def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
 
 # Dataset to compare, full proportions, sensitive attribute, distance metric
 def get_t_closeness_eqv(dataset, full, s_att, d_metric):
+    """
+    Given a dataset to compare, the full proportions, a sensitive attribute, and a distance metric, get the t-closeness of the dataset.
+    """
     s = dataset[s_att]
     eqv_prop = get_proportions(s)
     diff_prop = (full - eqv_prop).fillna(full)
@@ -49,6 +59,9 @@ def get_t_closeness_eqv(dataset, full, s_att, d_metric):
         
 
 def get_proportions(s):
+    """
+    Get proportions of each answer in a sensitive attribute.
+    """
     s_counts = s.value_counts()
     s_counts = s_counts.sort_index()
     return s_counts/sum(s_counts)

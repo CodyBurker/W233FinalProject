@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="pdoc 8.0.1" />
-    <title>ldiversity API documentation</title>
+    <title>tcloseness API documentation</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%2244.5%202.5%2015%2015%22%3E%3Cpath%20d%3D%22M49.351%2021.041c-.233-.721-.546-2.408-.772-4.076-.042-.09-.067-.187-.046-.288-.166-1.347-.277-2.625-.241-3.351-1.378-1.008-2.271-2.586-2.271-4.362%200-.976.272-1.935.788-2.774.057-.094.122-.18.184-.268-.033-.167-.052-.339-.052-.516%200-1.477%201.202-2.679%202.679-2.679.791%200%201.496.352%201.987.9a6.3%206.3%200%200%201%201.001.029c.492-.564%201.207-.929%202.012-.929%201.477%200%202.679%201.202%202.679%202.679a2.65%202.65%200%200%201-.269%201.148c.383.747.595%201.572.595%202.41%200%202.311-1.507%204.29-3.635%205.107.037.699.147%202.27.423%203.294l.137.461c.156%202.136-4.612%205.166-5.199%203.215zm.127-4.919a4.78%204.78%200%200%200%20.775-.584c-.172-.115-.505-.254-.88-.378zm.331%202.302l.828-.502c-.202-.143-.576-.328-.984-.49zm.45%202.157l.701-.403c-.214-.115-.536-.249-.891-.376l.19.779zM49.13%204.141c0%20.152.123.276.276.276s.275-.124.275-.276-.123-.276-.276-.276-.275.124-.275.276zm.735-.389a1.15%201.15%200%200%201%20.314.783%201.16%201.16%200%200%201-1.162%201.162c-.457%200-.842-.27-1.032-.653-.026.117-.042.238-.042.362a1.68%201.68%200%200%200%201.679%201.679%201.68%201.68%200%200%200%201.679-1.679c0-.843-.626-1.535-1.436-1.654zm3.076%201.654a1.68%201.68%200%200%200%201.679%201.679%201.68%201.68%200%200%200%201.679-1.679c0-.037-.009-.072-.011-.109-.21.3-.541.508-.935.508a1.16%201.16%200%200%201-1.162-1.162%201.14%201.14%200%200%201%20.474-.912c-.015%200-.03-.005-.045-.005-.926.001-1.679.754-1.679%201.68zm1.861-1.265c0%20.152.123.276.276.276s.275-.124.275-.276-.123-.276-.276-.276-.275.124-.275.276zm1.823%204.823c0-.52-.103-1.035-.288-1.52-.466.394-1.06.64-1.717.64-1.144%200-2.116-.725-2.499-1.738-.383%201.012-1.355%201.738-2.499%201.738-.867%200-1.631-.421-2.121-1.062-.307.605-.478%201.267-.478%201.942%200%202.486%202.153%204.51%204.801%204.51s4.801-2.023%204.801-4.51zm-3.032%209.156l-.146-.492c-.276-1.02-.395-2.457-.444-3.268a6.11%206.11%200%200%201-1.18.115%206.01%206.01%200%200%201-2.536-.562l.006.175c.802.215%201.848.612%202.021%201.25.079.295-.021.601-.274.837l-.598.501c.667.304%201.243.698%201.311%201.179.02.144.022.507-.393.787l-.564.365c1.285.521%201.361.96%201.381%201.126.018.142.011.496-.427.746l-.854.489c.064-1.19%201.985-2.585%202.697-3.248zM49.34%209.925c0-.667%201-.667%201%200%200%20.653.818%201.205%201.787%201.205s1.787-.552%201.787-1.205c0-.667%201-.667%201%200%200%201.216-1.25%202.205-2.787%202.205s-2.787-.989-2.787-2.205zm-.887-7.633c-.093.077-.205.114-.317.114a.5.5%200%200%201-.318-.886L49.183.397a.5.5%200%200%201%20.703.068.5.5%200%200%201-.069.703zm7.661-.065c-.086%200-.173-.022-.253-.068l-1.523-.893c-.575-.337-.069-1.2.506-.863l1.523.892a.5.5%200%200%201%20.179.685c-.094.158-.261.247-.432.247z%22%20fill%3D%22%233bb300%22/%3E%3C/svg%3E"/>
 
 
@@ -36,19 +36,13 @@
                     <a class="function" href="#read_example_dataset">read_example_dataset</a>
             </li>
             <li>
-                    <a class="function" href="#get_l_distinct_table">get_l_distinct_table</a>
+                    <a class="function" href="#get_t_closeness">get_t_closeness</a>
             </li>
             <li>
-                    <a class="function" href="#get_l_distinct">get_l_distinct</a>
+                    <a class="function" href="#get_t_closeness_eqv">get_t_closeness_eqv</a>
             </li>
             <li>
-                    <a class="function" href="#get_l_entropy_table">get_l_entropy_table</a>
-            </li>
-            <li>
-                    <a class="function" href="#get_l_entropy">get_l_entropy</a>
-            </li>
-            <li>
-                    <a class="function" href="#get_recursive_cl_diversity">get_recursive_cl_diversity</a>
+                    <a class="function" href="#get_proportions">get_proportions</a>
             </li>
     </ul>
 
@@ -64,98 +58,71 @@
     <main class="pdoc">
             <section>
                     <h1 class="modulename">
-ldiversity    </h1>
+tcloseness    </h1>
 
-                        <div class="docstring"><p>Module to test for various l-diversity metrics within a dataset.</p>
-</div>
-
+                
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Module to test for various l-diversity metrics within a dataset.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+            <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
 
-
 <span class="k">def</span> <span class="nf">read_example_dataset</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read example dataset</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">example_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;IT Salary Survey EU  2020.csv&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">example_dataframe</span>
-
-
-<span class="k">def</span> <span class="nf">get_l_distinct_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Given a dataframe, quasi-identifiers, and a sensitive column</span>
-<span class="sd">    Return a dataframe with each equivilence classes as a row and the count of distinct sensitive</span>
-<span class="sd">    Values for that class</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">ldistinct</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="n">sensitive_column</span><span class="p">:</span><span class="s2">&quot;nunique&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="c1"># Rename Column</span>
-    <span class="n">ldistinct</span> <span class="o">=</span> <span class="n">ldistinct</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">ldistinct</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="s1">&#39;LDistinct&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ldistinct</span>
-
-
-<span class="k">def</span> <span class="nf">get_l_distinct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataframe, a list of quasi-identifiers, and a sentive column, return</span>
-<span class="sd">    the largest l value that the table is l-distinct for.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">l_distinct_table</span> <span class="o">=</span> <span class="n">get_l_distinct_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">l_distinct_table</span><span class="p">[</span><span class="s1">&#39;LDistinct&#39;</span><span class="p">])</span>
-
-
-<span class="k">def</span> <span class="nf">get_l_entropy_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataframe, quasi-identifiers, and a sensitive columns</span>
-<span class="sd">    Return a dataframe with each equivilence class as a row and entropy</span>
-<span class="sd">    Of sensitive values for that class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">q_identifiers_sensitive</span> <span class="o">=</span> <span class="n">q_identifiers</span>
-    <span class="n">q_identifiers_sensitive</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="n">equiv_class_sizes</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">equiv_class_sizes</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">equiv_class_sizes</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;equiv_class_size&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers_sensitive</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">sensitive_count</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">sensitive_count</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;sensitive_count&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count_with_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sensitive_count</span><span class="p">,</span> <span class="n">equiv_class_sizes</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;sensitive_count&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;equiv_class_size&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;log_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">])</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;log_prob&#39;</span><span class="p">]</span>
-    <span class="n">sum_entropy</span> <span class="o">=</span> <span class="n">sensitive_count_with_size</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">sum_entropy</span><span class="p">[</span><span class="s1">&#39;total_entropy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sum_entropy</span><span class="p">[</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">sum_entropy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># NEEDS IMPLEMENTED</span>
-<span class="k">def</span> <span class="nf">get_l_entropy</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get entropy l-diversity for entire dataset</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">entropy_table</span> <span class="o">=</span> <span class="n">get_l_entropy_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">entropy_table</span><span class="p">[</span><span class="s1">&#39;total_entropy&#39;</span><span class="p">])</span>
     
-<span class="k">def</span> <span class="nf">get_recursive_cl_diversity</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)</span>
-<span class="sd">    return a either c (if l was provided) or l (if c was provided).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">c</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">l</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Find the biggest c for which the dataset satisifes (c,l) diversity given l</span>
-        <span class="k">return</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">l</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">c</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Find the biggest l for which the dataset satisifes (c,l) diversity given c</span>
-        <span class="k">return</span><span class="p">()</span>
+<span class="c1">#Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.</span>
+<span class="k">def</span> <span class="nf">get_t_closeness</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">s_attribute</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">):</span>
+    <span class="c1">#1. Need proportion of each answer from full table</span>
+    <span class="c1">#2. Split data up into each equivalence class</span>
+    <span class="c1">#2a. For each equivalence class, calculate the proportion of each answer</span>
+    <span class="c1">#2b. Find the difference of the full and equivalence class proportions</span>
+    <span class="c1">#2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class</span>
+    <span class="n">full_prop</span> <span class="o">=</span> <span class="n">get_proportions</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">s_attribute</span><span class="p">])</span>
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">)</span>
+    <span class="n">t_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">grouped</span><span class="p">:</span>
+        <span class="n">t_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">get_t_closeness_eqv</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">full_prop</span><span class="p">,</span> <span class="n">s_attribute</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">)])</span>
+    <span class="n">t_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_list</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    
+
+<span class="c1"># Dataset to compare, full proportions, sensitive attribute, distance metric</span>
+<span class="k">def</span> <span class="nf">get_t_closeness_eqv</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">full</span><span class="p">,</span> <span class="n">s_att</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">s_att</span><span class="p">]</span>
+    <span class="n">eqv_prop</span> <span class="o">=</span> <span class="n">get_proportions</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">diff_prop</span> <span class="o">=</span> <span class="p">(</span><span class="n">full</span> <span class="o">-</span> <span class="n">eqv_prop</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">full</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">d_metric</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_prop</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_prop</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Please provide either c or l&quot;</span><span class="p">)</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">diff_prop</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">r_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ind</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diff_prop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">r_sum</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">r_sum</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
+    
         
+
+<span class="k">def</span> <span class="nf">get_proportions</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s_counts</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">s_counts</span> <span class="o">=</span> <span class="n">s_counts</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">s_counts</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">s_counts</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;HW3.csv&quot;</span><span class="p">)</span>
     
-    <span class="c1"># HW 3 4(a)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">get_l_distinct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="s1">&#39;Drinks/Day&#39;</span><span class="p">))</span> <span class="c1"># Expected: 6</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">get_l_entropy</span><span class="p">(</span><span class="n">dataset</span><span class="p">,[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="s1">&#39;Drinks/Day&#39;</span><span class="p">))</span><span class="c1"># Expected: 4.22</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_t_closeness</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="s1">&#39;Drinks/Day&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_t_closeness</span><span class="p">(</span><span class="n">dataset</span><span class="p">,[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="s1">&#39;Drinks/Day&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
         </details>
@@ -172,9 +139,9 @@ ldiversity    </h1>
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">read_example_dataset</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read example dataset</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">example_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;IT Salary Survey EU  2020.csv&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">example_dataframe</span>
 </pre></div>
@@ -186,160 +153,91 @@ ldiversity    </h1>
 
 
                 </section>
-                <section id="get_l_distinct_table">
-                            <div class="attr function"><a class="headerlink" href="#get_l_distinct_table">#&nbsp;&nbsp</a>
+                <section id="get_t_closeness">
+                            <div class="attr function"><a class="headerlink" href="#get_t_closeness">#&nbsp;&nbsp</a>
 
         
             <span class="def">def</span>
-            <span class="name">get_l_distinct_table</span><span class="signature">(dataset, q_identifiers, sensitive_column)</span>:
+            <span class="name">get_t_closeness</span><span class="signature">(dataset, q_identifiers, s_attribute, d_metric)</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_l_distinct_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Given a dataframe, quasi-identifiers, and a sensitive column</span>
-<span class="sd">    Return a dataframe with each equivilence classes as a row and the count of distinct sensitive</span>
-<span class="sd">    Values for that class</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">ldistinct</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="n">sensitive_column</span><span class="p">:</span><span class="s2">&quot;nunique&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="c1"># Rename Column</span>
-    <span class="n">ldistinct</span> <span class="o">=</span> <span class="n">ldistinct</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">ldistinct</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="s1">&#39;LDistinct&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ldistinct</span>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_t_closeness</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">s_attribute</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">):</span>
+    <span class="c1">#1. Need proportion of each answer from full table</span>
+    <span class="c1">#2. Split data up into each equivalence class</span>
+    <span class="c1">#2a. For each equivalence class, calculate the proportion of each answer</span>
+    <span class="c1">#2b. Find the difference of the full and equivalence class proportions</span>
+    <span class="c1">#2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class</span>
+    <span class="n">full_prop</span> <span class="o">=</span> <span class="n">get_proportions</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">s_attribute</span><span class="p">])</span>
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">)</span>
+    <span class="n">t_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">grouped</span><span class="p">:</span>
+        <span class="n">t_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">get_t_closeness_eqv</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">full_prop</span><span class="p">,</span> <span class="n">s_attribute</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">)])</span>
+    <span class="n">t_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t_list</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Given a dataframe, quasi-identifiers, and a sensitive column
-Return a dataframe with each equivilence classes as a row and the count of distinct sensitive
-Values for that class</p>
-</div>
-
+    
 
                 </section>
-                <section id="get_l_distinct">
-                            <div class="attr function"><a class="headerlink" href="#get_l_distinct">#&nbsp;&nbsp</a>
+                <section id="get_t_closeness_eqv">
+                            <div class="attr function"><a class="headerlink" href="#get_t_closeness_eqv">#&nbsp;&nbsp</a>
 
         
             <span class="def">def</span>
-            <span class="name">get_l_distinct</span><span class="signature">(dataset, q_identifiers, sensitive_column)</span>:
+            <span class="name">get_t_closeness_eqv</span><span class="signature">(dataset, full, s_att, d_metric)</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_l_distinct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataframe, a list of quasi-identifiers, and a sentive column, return</span>
-<span class="sd">    the largest l value that the table is l-distinct for.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">l_distinct_table</span> <span class="o">=</span> <span class="n">get_l_distinct_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">l_distinct_table</span><span class="p">[</span><span class="s1">&#39;LDistinct&#39;</span><span class="p">])</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>Given a dataframe, a list of quasi-identifiers, and a sentive column, return
-the largest l value that the table is l-distinct for.</p>
-</div>
-
-
-                </section>
-                <section id="get_l_entropy_table">
-                            <div class="attr function"><a class="headerlink" href="#get_l_entropy_table">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">get_l_entropy_table</span><span class="signature">(dataset, q_identifiers, sensitive_column)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_l_entropy_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataframe, quasi-identifiers, and a sensitive columns</span>
-<span class="sd">    Return a dataframe with each equivilence class as a row and entropy</span>
-<span class="sd">    Of sensitive values for that class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">q_identifiers_sensitive</span> <span class="o">=</span> <span class="n">q_identifiers</span>
-    <span class="n">q_identifiers_sensitive</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="n">equiv_class_sizes</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">equiv_class_sizes</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">equiv_class_sizes</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;equiv_class_size&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers_sensitive</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">sensitive_count</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">sensitive_count</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;sensitive_count&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count_with_size</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sensitive_count</span><span class="p">,</span> <span class="n">equiv_class_sizes</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;sensitive_count&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;equiv_class_size&#39;</span><span class="p">]</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;log_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">])</span>
-    <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;prob&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">sensitive_count_with_size</span><span class="p">[</span><span class="s1">&#39;log_prob&#39;</span><span class="p">]</span>
-    <span class="n">sum_entropy</span> <span class="o">=</span> <span class="n">sensitive_count_with_size</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">q_identifiers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">sum_entropy</span><span class="p">[</span><span class="s1">&#39;total_entropy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sum_entropy</span><span class="p">[</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">sum_entropy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;neg_p_log_p&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>Given a dataframe, quasi-identifiers, and a sensitive columns
-Return a dataframe with each equivilence class as a row and entropy
-Of sensitive values for that class</p>
-</div>
-
-
-                </section>
-                <section id="get_l_entropy">
-                            <div class="attr function"><a class="headerlink" href="#get_l_entropy">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">get_l_entropy</span><span class="signature">(dataset, q_identifiers, sensitive_column)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_l_entropy</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get entropy l-diversity for entire dataset</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">entropy_table</span> <span class="o">=</span> <span class="n">get_l_entropy_table</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">entropy_table</span><span class="p">[</span><span class="s1">&#39;total_entropy&#39;</span><span class="p">])</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>Get entropy l-diversity for entire dataset</p>
-</div>
-
-
-                </section>
-                <section id="get_recursive_cl_diversity">
-                            <div class="attr function"><a class="headerlink" href="#get_recursive_cl_diversity">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">get_recursive_cl_diversity</span><span class="signature">(dataset, q_identifiers, sensitive_column, c=None, l=None)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_recursive_cl_diversity</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">q_identifiers</span><span class="p">,</span> <span class="n">sensitive_column</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)</span>
-<span class="sd">    return a either c (if l was provided) or l (if c was provided).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">c</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">l</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Find the biggest c for which the dataset satisifes (c,l) diversity given l</span>
-        <span class="k">return</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">l</span><span class="o">==</span><span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">c</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Find the biggest l for which the dataset satisifes (c,l) diversity given c</span>
-        <span class="k">return</span><span class="p">()</span>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_t_closeness_eqv</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">full</span><span class="p">,</span> <span class="n">s_att</span><span class="p">,</span> <span class="n">d_metric</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">s_att</span><span class="p">]</span>
+    <span class="n">eqv_prop</span> <span class="o">=</span> <span class="n">get_proportions</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">diff_prop</span> <span class="o">=</span> <span class="p">(</span><span class="n">full</span> <span class="o">-</span> <span class="n">eqv_prop</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">full</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">d_metric</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_prop</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_prop</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Please provide either c or l&quot;</span><span class="p">)</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">diff_prop</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">r_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ind</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diff_prop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">r_sum</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">r_sum</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-return a either c (if l was provided) or l (if c was provided).</p>
-</div>
+    
 
+                </section>
+                <section id="get_proportions">
+                            <div class="attr function"><a class="headerlink" href="#get_proportions">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">get_proportions</span><span class="signature">(s)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_proportions</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s_counts</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">s_counts</span> <span class="o">=</span> <span class="n">s_counts</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">s_counts</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">s_counts</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+    
 
                 </section>
     </main>

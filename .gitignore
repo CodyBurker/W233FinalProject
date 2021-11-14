@@ -1,0 +1,7 @@
+_pycache_
+__pycache__/
+__pycache__
+.pyc
+*.pyc
+__pycache__/kanonymity.cpython-37.pyc
+*.pyc

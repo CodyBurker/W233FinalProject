@@ -1,9 +1,41 @@
-"""
-Module to test for various l-diversity metrics within a dataset.
-"""
+
 import pandas as pd
 import numpy as np
 import pytest
+
+def read_example_dataset():
+    """
+    Read example dataset
+    """
+    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
+    return example_dataframe
+    
+
+def get_k_table(dataset, q_identifiers):
+    """
+    Given a dataset and list of QIDs, return a table of 
+    equivilence classes, with the number of records associated
+    with each class.
+    """
+    k_table = dataset.groupby(q_identifiers).size().reset_index()
+    k_table = k_table.rename({k_table.columns[-1]: 'KCount'}, axis=1)
+    return k_table
+
+
+def get_k(dataset, q_identifiers):
+    """
+    Given a dataframe and list of QIDs, return the k-Anonymity of the table.
+    """
+    k = min(get_k_table(dataset,q_identifiers)['KCount'])
+    return k
+
+def smallest_classes(dataset,q_identifiers):
+    """
+    Given a dataframe and a list of QIDs, return the equivilence class(es) with the the smallest k-value
+    """
+    k_table = get_k_table(dataset, q_identifiers)
+    min_equiv_classes = k_table[k_table['KCount'] == min(k_table['KCount'])]
+    return min_equiv_classes
 
 
 def read_example_dataset():
@@ -55,7 +87,6 @@ def get_l_entropy_table(dataset, q_identifiers, sensitive_column):
     sum_entropy['total_entropy'] = np.exp(sum_entropy['neg_p_log_p'])
     return sum_entropy.drop('neg_p_log_p',axis=1)
 
-# NEEDS IMPLEMENTED
 def get_l_entropy(dataset, q_identifiers, sensitive_column):
     """
     Get entropy l-diversity for entire dataset
@@ -76,10 +107,68 @@ def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None,
         return()
     else:
         raise Exception("Please provide either c or l")
-        
-if __name__=="__main__":
-    dataset = pd.read_csv("HW3.csv")
     
-    # HW 3 4(a)
-    print(get_l_distinct(dataset, ['Sex'],'Drinks/Day')) # Expected: 6
-    print(get_l_entropy(dataset,['Sex'],'Drinks/Day'))# Expected: 4.22
+
+"""
+Module to test for t-closeness.
+"""
+
+def read_example_dataset():
+    """
+    Read example dataset
+    """
+    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
+    return example_dataframe
+    
+#Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.
+def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
+    """
+    Given a pandas dataframe, a list of quasi-identifiers, a sensitive attribute, and a distance metric, get the t-closeness of a dataset.
+    """
+    #1. Need proportion of each answer from full table
+    #2. Split data up into each equivalence class
+    #2a. For each equivalence class, calculate the proportion of each answer
+    #2b. Find the difference of the full and equivalence class proportions
+    #2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class
+    full_prop = get_proportions(dataset[s_attribute])
+    grouped = dataset.groupby(q_identifiers)
+    t_list = []
+    for name, group in grouped:
+        t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
+    t_list = pd.DataFrame(t_list)
+    return max(pd.DataFrame(t_list)[1])
+    
+
+# Dataset to compare, full proportions, sensitive attribute, distance metric
+def get_t_closeness_eqv(dataset, full, s_att, d_metric):
+    """
+    Given a dataset to compare, the full proportions, a sensitive attribute, and a distance metric, get the t-closeness of the dataset.
+    """
+    s = dataset[s_att]
+    eqv_prop = get_proportions(s)
+    diff_prop = (full - eqv_prop).fillna(full)
+    t = 0
+    if d_metric == 0:
+        t = sum(abs(diff_prop))/(len(diff_prop)-1)
+    else:
+        ind = diff_prop.index
+        r_sum = 0
+        r = []
+        for i in range(min(ind), max(ind) + 1):
+            try:
+                r.append(diff_prop.loc[i])
+            except KeyError:
+                r.append(0)
+            r_sum += abs(sum(r))
+        t = r_sum/(len(r)-1)
+    return t
+    
+        
+
+def get_proportions(s):
+    """
+    Get proportions of each answer in a sensitive attribute.
+    """
+    s_counts = s.value_counts()
+    s_counts = s_counts.sort_index()
+    return s_counts/sum(s_counts)

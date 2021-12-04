@@ -1,5 +1,5 @@
-from ldiversity import read_example_dataset
-from tcloseness import get_proportions, get_t_closeness_eqv,get_t_closeness, read_example_dataset
+from anonymization import read_example_dataset
+from anonymization import get_proportions, get_t_closeness_eqv,get_t_closeness, read_example_dataset
 import pandas as pd
 import pytest
 
@@ -32,6 +32,8 @@ def test_t_closeness2():
                                                 downcast = 'integer').fillna(0).astype(int)
     test_1 = get_t_closeness(df, ['Age', 'City'], 'Total years of experience', 0)
     test_1_ans = 0.06055769184260804
+    assert round(test_1,5) == round(test_1_ans,5)
 
     test_2 = get_t_closeness(df, ['Age', 'City'], 'Total years of experience', 1)
     test_2_ans = 0.9767492743264744
+    assert round(test_2,5) == round(test_2_ans,5)

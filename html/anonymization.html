@@ -29,6 +29,9 @@
 <pre><code class="python">import pandas as pd
 import numpy as np
 import pytest
+import multiprocessing
+from joblib import Parallel, delayed
+from functools import partial
 
 def read_example_dataset():
     &#34;&#34;&#34;
@@ -64,13 +67,6 @@ def smallest_classes(dataset,q_identifiers):
     min_equiv_classes = k_table[k_table[&#39;KCount&#39;] == min(k_table[&#39;KCount&#39;])]
     return min_equiv_classes
 
-
-def read_example_dataset():
-    &#39;&#39;&#39;
-    Read example dataset
-    &#39;&#39;&#39;
-    example_dataframe = pd.read_csv(&#39;IT Salary Survey EU  2020.csv&#39;)
-    return example_dataframe
 
 
 def get_l_distinct_table(dataset, q_identifiers, sensitive_column):
@@ -120,32 +116,7 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     &#34;&#34;&#34;
     entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
     return min(entropy_table[&#39;total_entropy&#39;])
-    
-def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
-    &#34;&#34;&#34;
-    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-    return a either c (if l was provided) or l (if c was provided).
-    &#34;&#34;&#34;
-    if c==None and not l==None:
-        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
-        return()
-    elif l==None and not c==None:
-        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
-        return()
-    else:
-        raise Exception(&#34;Please provide either c or l&#34;)
-    
 
-&#34;&#34;&#34;
-Module to test for t-closeness.
-&#34;&#34;&#34;
-
-def read_example_dataset():
-    &#34;&#34;&#34;
-    Read example dataset
-    &#34;&#34;&#34;
-    example_dataframe = pd.read_csv(&#39;IT Salary Survey EU  2020.csv&#39;)
-    return example_dataframe
     
 #Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.
 def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
@@ -157,13 +128,21 @@ def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
     #2a. For each equivalence class, calculate the proportion of each answer
     #2b. Find the difference of the full and equivalence class proportions
     #2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class
-    full_prop = get_proportions(dataset[s_attribute])
+    
     grouped = dataset.groupby(q_identifiers)
-    t_list = []
-    for name, group in grouped:
-        t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
-    t_list = pd.DataFrame(t_list)
-    return max(pd.DataFrame(t_list)[1])
+    # Get names of each equivalence class
+    name_group = [(name, group) for name, group in grouped]
+    # Run get_t_closeness_eqv for each group in grouped
+    # In parallel to speed up computation
+    # using full_prop, s_attribute, and d_metric
+    full_prop = get_proportions(dataset[s_attribute])
+    t_closeness_eqv = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(get_t_closeness_eqv)(group,full_prop, s_attribute, d_metric) for name, group in grouped)
+    # Create t_list for each group  
+    # for name, group in grouped:
+    #     t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
+    # Turn names from grouped and t_list into a dataframe
+    t_closeness_eqv_df = pd.DataFrame(t_closeness_eqv)
+    return max(pd.DataFrame(t_closeness_eqv)[0])
     
 
 # Dataset to compare, full proportions, sensitive attribute, distance metric
@@ -356,31 +335,6 @@ Of sensitive values for that class</p></div>
     return s_counts/sum(s_counts)</code></pre>
 </details>
 </dd>
-<dt id="anonymization.get_recursive_cl_diversity"><code class="name flex">
-<span>def <span class="ident">get_recursive_cl_diversity</span></span>(<span>dataset, q_identifiers, sensitive_column, c=None, l=None)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-return a either c (if l was provided) or l (if c was provided).</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
-    &#34;&#34;&#34;
-    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-    return a either c (if l was provided) or l (if c was provided).
-    &#34;&#34;&#34;
-    if c==None and not l==None:
-        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
-        return()
-    elif l==None and not c==None:
-        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
-        return()
-    else:
-        raise Exception(&#34;Please provide either c or l&#34;)</code></pre>
-</details>
-</dd>
 <dt id="anonymization.get_t_closeness"><code class="name flex">
 <span>def <span class="ident">get_t_closeness</span></span>(<span>dataset, q_identifiers, s_attribute, d_metric)</span>
 </code></dt>
@@ -399,13 +353,21 @@ return a either c (if l was provided) or l (if c was provided).</p></div>
     #2a. For each equivalence class, calculate the proportion of each answer
     #2b. Find the difference of the full and equivalence class proportions
     #2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class
-    full_prop = get_proportions(dataset[s_attribute])
+    
     grouped = dataset.groupby(q_identifiers)
-    t_list = []
-    for name, group in grouped:
-        t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
-    t_list = pd.DataFrame(t_list)
-    return max(pd.DataFrame(t_list)[1])</code></pre>
+    # Get names of each equivalence class
+    name_group = [(name, group) for name, group in grouped]
+    # Run get_t_closeness_eqv for each group in grouped
+    # In parallel to speed up computation
+    # using full_prop, s_attribute, and d_metric
+    full_prop = get_proportions(dataset[s_attribute])
+    t_closeness_eqv = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(get_t_closeness_eqv)(group,full_prop, s_attribute, d_metric) for name, group in grouped)
+    # Create t_list for each group  
+    # for name, group in grouped:
+    #     t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
+    # Turn names from grouped and t_list into a dataframe
+    t_closeness_eqv_df = pd.DataFrame(t_closeness_eqv)
+    return max(pd.DataFrame(t_closeness_eqv)[0])</code></pre>
 </details>
 </dd>
 <dt id="anonymization.get_t_closeness_eqv"><code class="name flex">
@@ -496,7 +458,6 @@ return a either c (if l was provided) or l (if c was provided).</p></div>
 <li><code><a title="anonymization.get_l_entropy" href="#anonymization.get_l_entropy">get_l_entropy</a></code></li>
 <li><code><a title="anonymization.get_l_entropy_table" href="#anonymization.get_l_entropy_table">get_l_entropy_table</a></code></li>
 <li><code><a title="anonymization.get_proportions" href="#anonymization.get_proportions">get_proportions</a></code></li>
-<li><code><a title="anonymization.get_recursive_cl_diversity" href="#anonymization.get_recursive_cl_diversity">get_recursive_cl_diversity</a></code></li>
 <li><code><a title="anonymization.get_t_closeness" href="#anonymization.get_t_closeness">get_t_closeness</a></code></li>
 <li><code><a title="anonymization.get_t_closeness_eqv" href="#anonymization.get_t_closeness_eqv">get_t_closeness_eqv</a></code></li>
 <li><code><a title="anonymization.read_example_dataset" href="#anonymization.read_example_dataset">read_example_dataset</a></code></li>

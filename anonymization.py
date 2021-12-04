@@ -38,13 +38,6 @@ def smallest_classes(dataset,q_identifiers):
     return min_equiv_classes
 
 
-def read_example_dataset():
-    '''
-    Read example dataset
-    '''
-    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
-    return example_dataframe
-
 
 def get_l_distinct_table(dataset, q_identifiers, sensitive_column):
     '''
@@ -93,32 +86,7 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     """
     entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
     return min(entropy_table['total_entropy'])
-    
-def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
-    """
-    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-    return a either c (if l was provided) or l (if c was provided).
-    """
-    if c==None and not l==None:
-        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
-        return()
-    elif l==None and not c==None:
-        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
-        return()
-    else:
-        raise Exception("Please provide either c or l")
-    
 
-"""
-Module to test for t-closeness.
-"""
-
-def read_example_dataset():
-    """
-    Read example dataset
-    """
-    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
-    return example_dataframe
     
 #Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.
 def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):

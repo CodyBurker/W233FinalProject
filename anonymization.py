@@ -2,6 +2,9 @@
 import pandas as pd
 import numpy as np
 import pytest
+import multiprocessing
+from joblib import Parallel, delayed
+from functools import partial
 
 def read_example_dataset():
     """
@@ -37,13 +40,6 @@ def smallest_classes(dataset,q_identifiers):
     min_equiv_classes = k_table[k_table['KCount'] == min(k_table['KCount'])]
     return min_equiv_classes
 
-
-def read_example_dataset():
-    '''
-    Read example dataset
-    '''
-    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
-    return example_dataframe
 
 
 def get_l_distinct_table(dataset, q_identifiers, sensitive_column):
@@ -93,32 +89,7 @@ def get_l_entropy(dataset, q_identifiers, sensitive_column):
     """
     entropy_table = get_l_entropy_table(dataset, q_identifiers, sensitive_column)
     return min(entropy_table['total_entropy'])
-    
-def get_recursive_cl_diversity(dataset, q_identifiers, sensitive_column, c=None, l=None):
-    """
-    Given a dataset, list of q_identifiers, sensitive_column, and either c or l (but not both)
-    return a either c (if l was provided) or l (if c was provided).
-    """
-    if c==None and not l==None:
-        # Find the biggest c for which the dataset satisifes (c,l) diversity given l
-        return()
-    elif l==None and not c==None:
-        # Find the biggest l for which the dataset satisifes (c,l) diversity given c
-        return()
-    else:
-        raise Exception("Please provide either c or l")
-    
 
-"""
-Module to test for t-closeness.
-"""
-
-def read_example_dataset():
-    """
-    Read example dataset
-    """
-    example_dataframe = pd.read_csv('IT Salary Survey EU  2020.csv')
-    return example_dataframe
     
 #Requires s_attribute to be integers. If d_metric is 0, use equal ground distance. Otherwise use euclidean distance.
 def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
@@ -130,13 +101,21 @@ def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
     #2a. For each equivalence class, calculate the proportion of each answer
     #2b. Find the difference of the full and equivalence class proportions
     #2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class
-    full_prop = get_proportions(dataset[s_attribute])
+    
     grouped = dataset.groupby(q_identifiers)
-    t_list = []
-    for name, group in grouped:
-        t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
-    t_list = pd.DataFrame(t_list)
-    return max(pd.DataFrame(t_list)[1])
+    # Get names of each equivalence class
+    name_group = [(name, group) for name, group in grouped]
+    # Run get_t_closeness_eqv for each group in grouped
+    # In parallel to speed up computation
+    # using full_prop, s_attribute, and d_metric
+    full_prop = get_proportions(dataset[s_attribute])
+    t_closeness_eqv = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(get_t_closeness_eqv)(group,full_prop, s_attribute, d_metric) for name, group in grouped)
+    # Create t_list for each group  
+    # for name, group in grouped:
+    #     t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
+    # Turn names from grouped and t_list into a dataframe
+    t_closeness_eqv_df = pd.DataFrame(t_closeness_eqv)
+    return max(pd.DataFrame(t_closeness_eqv)[0])
     
 
 # Dataset to compare, full proportions, sensitive attribute, distance metric

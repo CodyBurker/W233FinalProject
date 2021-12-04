@@ -2,6 +2,9 @@
 import pandas as pd
 import numpy as np
 import pytest
+import multiprocessing
+from joblib import Parallel, delayed
+from functools import partial
 
 def read_example_dataset():
     """
@@ -98,13 +101,21 @@ def get_t_closeness(dataset, q_identifiers, s_attribute, d_metric):
     #2a. For each equivalence class, calculate the proportion of each answer
     #2b. Find the difference of the full and equivalence class proportions
     #2c. Use the formula associated with each distance metric to output t-closeness for that equivalence class
-    full_prop = get_proportions(dataset[s_attribute])
+    
     grouped = dataset.groupby(q_identifiers)
-    t_list = []
-    for name, group in grouped:
-        t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
-    t_list = pd.DataFrame(t_list)
-    return max(pd.DataFrame(t_list)[1])
+    # Get names of each equivalence class
+    name_group = [(name, group) for name, group in grouped]
+    # Run get_t_closeness_eqv for each group in grouped
+    # In parallel to speed up computation
+    # using full_prop, s_attribute, and d_metric
+    full_prop = get_proportions(dataset[s_attribute])
+    t_closeness_eqv = Parallel(n_jobs=multiprocessing.cpu_count())(delayed(get_t_closeness_eqv)(group,full_prop, s_attribute, d_metric) for name, group in grouped)
+    # Create t_list for each group  
+    # for name, group in grouped:
+    #     t_list.append([name, get_t_closeness_eqv(group, full_prop, s_attribute, d_metric)])
+    # Turn names from grouped and t_list into a dataframe
+    t_closeness_eqv_df = pd.DataFrame(t_closeness_eqv)
+    return max(pd.DataFrame(t_closeness_eqv)[0])
     
 
 # Dataset to compare, full proportions, sensitive attribute, distance metric

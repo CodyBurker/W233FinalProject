@@ -39,9 +39,9 @@ def utility_discernibility(k,dataset0,dataset1,q_identifiers1):
     U.where(EC1 < k**2, EC1 * D)
     return sum(U)
 
-def utility_norm_discern(k,dataset1,q_identifiers1):
+def utility_norm_avg(k,dataset1,q_identifiers1):
     """
-    The normalized discernability measure
+    Normalized average class size 
     (total records/ total equiv classes )/(k)
     - dataset1 is generalized dataset
     - q-identifiers1 is (generalized) quasi-identifier for dataset1
@@ -79,15 +79,15 @@ def utility_KL(dataset0, dataset1, n):
     q_identifiers0 is the original q_identifiers 
     q_identifiers1 is the anonymized q_identifiers 
     """
-    # I think this is wrong
+    # 
     [numrow numcol] = dataset0.shape
-    p = 1/numrow
+    p = 1/numrow * ones[numrow]
     ec_q = dataset1.groupby(q_identifiers1)
     for i in [0:numrow]:
         ec = equivclass of dataset0[i]
-        ec_size = 
-        q[i] = p[i] * ec_size * (1/n)   % 
-        
+        ec_size = ec.shape[0] 
+        q[i] = p[i] * ec_size * (1/n)   
+    get_KL(p,q)
     return KL
     
 

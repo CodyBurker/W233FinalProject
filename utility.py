@@ -39,9 +39,9 @@ def utility_discernibility(k,dataset0,dataset1,q_identifiers1):
     U.where(EC1 < k**2, EC1 * D)
     return sum(U)
 
-def utility_norm_discern(k,dataset1,q_identifiers1):
+def utility_norm_avg(k,dataset1,q_identifiers1):
     """
-    The normalized discernability measure
+    Normalized average class size 
     (total records/ total equiv classes )/(k)
     - dataset1 is generalized dataset
     - q-identifiers1 is (generalized) quasi-identifier for dataset1
@@ -52,55 +52,35 @@ def utility_norm_discern(k,dataset1,q_identifiers1):
     num_EC = len(dataset1.groupby(q_identifiers1))
     return (num_rec/num_EC)/k
 
-def get_KL(p,q):
+# For two probability distributions, calculate the Earth mover's distance
+def EMD(p,q, distance_metric = "equal"):
     """
-    calculate Kullbacl-Leibler divergence between original discrete probability
-    p and anonymized q
-    KL = sum(pi * log(pi/qi) 
+    given two distributions p and q on v calculate their EMD
+    assuming the values for the sensitive attribute v
+    are numerical
     """
-    if (p.shape[0] != q.shape[0]):
-        KL = -1
-    else
-        KL = np.sum(np.where(p != 0, p * np.log(p / q), 0))
-    return KL
-    
-    
-def utility_KL(dataset0, dataset1, n):
-    """
-    Calculate Kullback-Leibler divergence between distributions of 
-    original and generalized q_identifiers. 
-    dataset0 is the original dataset
-    dataset1 is the anonymized dataset
-    n[i] = total number of possible records that would be anonymized to dataset1[i]
-    example {sex} -> {"*"} => n = 2
-    {zip code} -> remove last digit => n = 10
-    {zip code} -> remove last 2 digits => n = 100 
-    assumes that for all i dataset1[i] is the anonymized version of dataset1[i]
-    q_identifiers0 is the original q_identifiers 
-    q_identifiers1 is the anonymized q_identifiers 
-    """
-    # I think this is wrong
-    [numrow numcol] = dataset0.shape
-    p = 1/numrow
-    ec_q = dataset1.groupby(q_identifiers1)
-    for i in [0:numrow]:
-        ec = equivclass of dataset0[i]
-        ec_size = 
-        q[i] = p[i] * ec_size * (1/n)   % 
-        
-    return KL
-    
+    if len(p) != len(q):
+        return 0
+    if distance_metric == "equal":
+        return sum(abs(np.subtract(p, q))) / 2
+    elif distance_metric == "ordered":
+        dist = 0
+        diff = np.subtract(p, q)
+        for i in range(len(diff)):
+            if i > 1:
+                for j in range(i - 1):
+                    diff[i] += diff[j]
+            dist += abs(diff[i])
+        return dist/(len(diff) - 1)
+    return 0
+
 
 if __name__=="__main__":
     
     dataset = pd.read_csv("HW3.csv")
     # Get distinct k value for q-attributes = ['Sex']
-    k = get_k(dataset, ['Sex'])
-    print('K [Sex]:\t%i' % k)
-    # Get distinct k value for q-attributes = ['Sex','Age']
-    k = get_k(dataset, ['Sex','Age'])
-    print('K [Sex,Age]:\t%i' % k)
-    # Get distinct k value for q-attributes = ['Sex','Age','Birth Country']
-    k = get_k(dataset, ['Sex','Age','Birth Country'])
-    print('K [Sex,Age,Birth Country]:\t%i' % k)
+    k = EMD([0, 0.5, 1], [0.5, 0, 1])
+    print(k)
+    k = EMD([0, 0.5, 0.25, 0.25], [0.5, 0, 0.5, 0], "ordered")
+    print(k)
     

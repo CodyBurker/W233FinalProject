@@ -67,7 +67,7 @@ def EMD(p,q, distance_metric = "equal"):
         dist = 0
         diff = np.subtract(p, q)
         for i in range(len(diff)):
-            if i > 1:
+            if i > 0:
                 for j in range(i - 1):
                     diff[i] += diff[j]
             dist += abs(diff[i])
